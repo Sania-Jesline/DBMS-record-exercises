@@ -1,0 +1,54 @@
+1) Create the DEPT table based on the DEPARTMENT following the table instance chart below. Confirm that the table is created.
+CREATE TABLE DEPT (
+    ID NUMBER(7),
+    NAME VARCHAR2(25),
+    CONSTRAINT PK_DEPT PRIMARY KEY (ID)
+);
+Confirm the table creation
+DESCRIBE DEPT;
+
+2) Create the EMP table based on the following instance chart. Confirm that the table is created.
+CREATE TABLE EMP (
+    ID NUMBER(7),
+    LAST_NAME VARCHAR2(25),
+    FIRST_NAME VARCHAR2(25),
+    DEPT_ID NUMBER(7),
+    CONSTRAINT PK_EMP PRIMARY KEY (ID),
+    CONSTRAINT FK_EMP_DEPT FOREIGN KEY (DEPT_ID) REFERENCES DEPT(ID)
+);
+Confirm the table creation
+DESCRIBE EMP;
+
+3) Modify the EMP table to allow for longer employee last names. Confirm the modification.(Hint: Increase the size to 50)
+ALTER TABLE EMP MODIFY (LAST_NAME VARCHAR2(50));
+Confirm the modification
+DESCRIBE EMP;
+
+4) Create the EMPLOYEES2 table based on the structure of EMPLOYEES table. Include Only the Employee_id, First_name, Last_name, Salary and Dept_id coloumns. Name the columns Id, First_name, Last_name, salary and Dept_id respectively.
+CREATE TABLE EMPLOYEES2 AS
+SELECT 
+    ID AS Id,
+    FIRST_NAME AS First_name,
+    LAST_NAME AS Last_name,
+    SALARY,
+    DEPT_ID AS Dept_id
+FROM EMPLOYEES;
+Confirm the table creation
+DESCRIBE EMPLOYEES2;
+
+5)Drop the EMP table.
+DROP TABLE EMP;
+
+6)Rename the EMPLOYEES2 table as EMP.
+RENAME TABLE EMPLOYEES2 TO EMP;
+
+7)Add a comment on DEPT and EMP tables. Confirm the modification by describing the table.
+ALTER TABLE DEPT COMMENT = 'Department Table';
+ALTER TABLE EMP COMMENT = 'Employee Table';
+DESCRIBE DEPT;
+DESCRIBE EMP;
+
+8)Drop the First_name column from the EMP table and confirm it.
+ALTER TABLE EMP DROP COLUMN FIRST_NAME;
+Confirm the column has been dropped
+DESCRIBE EMP;
